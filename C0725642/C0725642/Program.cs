@@ -11,26 +11,28 @@ namespace C0725642
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("download");
+            Console.WriteLine(" Downloading a file");
             Download();
-            Console.ReadLine():
-            
-            
+            Console.ReadLine();
         }
+
         static async void Download()
         {
-            await Network.download();
-            Console.WriteLine("download complete");
+            await Network.Download();
+            Console.WriteLine("Download Complete");
         }
 
+    }
 
-        class Network
+
+    class Network
+    {
+        public async void Download()
         {
-            static public Task download()
-            {
-                return Task.Run(
-                () => ThreadStaticAttribute.Sleep(60000));
-            }
+            HttpClient client = new HttpClient();
+            var data = await client.GetStringAsync("https://torontopubliclibrary.ca");
+            Console.WriteLine(data);
         }
     }
 }
+
